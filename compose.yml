@@ -1,0 +1,18 @@
+services:
+    nginx:
+        image: nginx:1.29
+        container_name: heracles-nginx
+        restart: always
+        environment:
+            - SERVER_NAME=${SERVER_NAME}
+        volumes:
+            - ./templates:/etc/nginx/templates:ro
+            - ./certs:/etc/nginx/certs:ro
+        ports:
+            - "443:443"
+        networks:
+            - heracles_network
+
+networks:
+    heracles_network:
+        external: true
