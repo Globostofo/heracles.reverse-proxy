@@ -1,0 +1,13 @@
+server {
+    listen 443 ssl;
+    server_name ${SERVER_NAME};
+
+    include /etc/nginx/conf.d/10-ssl.conf;
+
+    root /usr/share/nginx/html;
+    index index.html;
+
+    location / {
+        try_files /index.html =404;
+    }
+}
