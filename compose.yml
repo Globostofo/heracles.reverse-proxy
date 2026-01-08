@@ -8,6 +8,7 @@ services:
         volumes:
             - ./nginx/templates:/etc/nginx/templates:ro
             - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+            - ./nginx/legal/legal.html:/usr/share/nginx/html/legal.html:ro
             - certbot_conf:/etc/letsencrypt
         ports:
             - "80:80"

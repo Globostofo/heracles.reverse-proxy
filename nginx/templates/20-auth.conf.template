@@ -2,18 +2,21 @@ server {
     listen 443 ssl;
     server_name auth.${SERVER_NAME};
 
-    include /etc/nginx/conf.d/10-ssl.conf;
+    include /etc/nginx/conf.d/snippets/ssl.conf;
+    include /etc/nginx/conf.d/snippets/proxy.conf;
+    include /etc/nginx/conf.d/snippets/legal.conf;
 
     location / {
-        include /etc/nginx/conf.d/15-proxy-headers.conf;
         proxy_pass http://keycloak:8080;
     }
 
     location /admin {
-        return 403;
+        include /etc/nginx/conf.d/snippets/lan-only.conf;
+        proxy_pass http://keycloak:8080;
     }
 
     location /realms/master {
-        return 403;
+        include /etc/nginx/conf.d/snippets/lan-only.conf;
+        proxy_pass http://keycloak:8080;
     }
 }

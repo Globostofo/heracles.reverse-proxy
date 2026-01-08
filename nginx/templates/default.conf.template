@@ -2,7 +2,7 @@ server {
     listen 443 ssl default_server;
     server_name _;
 
-    include /etc/nginx/conf.d/10-ssl.conf;
+    include /etc/nginx/conf.d/snippets/ssl.conf;
 
     return 444;
 }
